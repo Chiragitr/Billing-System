@@ -36,7 +36,7 @@
                             {% for p in products %}
                                 <tr>
                                 <td>{{ p.product_name }}</td>&nbsp
-                                <td><input type="number" min="0" name="#"></td>&nbsp
+                                <td><input type="number" min="0" name="q_id_{{ p.product_id }}"></td>&nbsp
                                 <td><center>{{ p.product_price }}</center></td>
                                 </tr>
                             {% endfor %}                            

@@ -49,10 +49,30 @@ def index(request):
 
 def cal_amount(request):
     print("cal_amount")
-    #cus_name = request.POST.get('name')
-    x = request.POST.get('')
+    amount = 0
+    count = 0
+
+    username = request.POST.get('username')
+    mobilenumber = request.POST.get('mobilenumber')
+
+    products = Product.objects.all()
+    total_count = Product.objects.all().count()
+    for p in products:
+        id = p.product_id
+        q = request.POST.get('q_id_' + str(id))
+        if q is not None and q != '' and int(q):
+            q = int(q)
+            amount += q * int(p.product_price)
+            count += 1
+
+    context = {
+        'count': count,
+        'amount': amount
+    }
+    # cus_name = request.POST.get('name')
+    # x = request.POST.get('')
     # quantity2 = request.POST.get('quantity2')
-    return render(request, "bills/bills.html", {})
+    return render(request, "bills/bills.html", context)
 
 
 def test_iterations(request):
